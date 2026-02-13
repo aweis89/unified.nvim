@@ -68,6 +68,7 @@ require('unified').setup({
     change = "~",
   },
   auto_refresh = true, -- Whether to automatically refresh diff when buffer changes
+  gitsigns_sync = true, -- Whether to sync gitsigns base with unified diff
 })
 ```
 

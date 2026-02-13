@@ -318,6 +318,15 @@ function M.show(commit, buffer_id)
     return false
   end
 
+  if config.values.gitsigns_sync then
+    local ok_gitsigns, gitsigns = pcall(require, "gitsigns")
+    if ok_gitsigns then
+      vim.api.nvim_buf_call(buffer, function()
+        pcall(gitsigns.change_base, commit)
+      end)
+    end
+  end
+
   local git = require("unified.git")
   return git.show_git_diff_against_commit(commit, buffer)
 end
